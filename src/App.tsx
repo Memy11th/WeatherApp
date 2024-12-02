@@ -1,11 +1,12 @@
-import React from 'react'
 import './App.css'
 
-function App({children}:{children:React.ReactNode}) {
+function App() {
 
   return <>
-  {/*components here */}
-  {children}
+  Hello
+  <div className='min-h-screen bg-red-500 '>
+
+  </div>
   </>
 }
 
