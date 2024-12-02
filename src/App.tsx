@@ -1,12 +1,10 @@
 import './App.css'
+import Search from './components/search/Search'
 
 function App() {
-
+    const 
   return <>
-  Hello
-  <div className='min-h-screen bg-red-500 '>
-
-  </div>
+  <Search />
   </>
 }
 
