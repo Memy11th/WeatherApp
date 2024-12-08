@@ -4,8 +4,14 @@ export function Navbar() {
 
   return (
       <>
-      <header className="flex justify-between items-center p-4 bg-gray-100 w-full sticky top-0  "  >
-      <ThemeToggle />
+      <header className={`flex justify-between items-center p-4  w-full sticky top-0  backdrop-blur-sm bg-background/60 supports-[backdrop-filter]:bg-background/60 ]  `}  >
+        <div>
+          <h5 className="font-bold">M11 weather</h5>
+        </div>
+        <div >
+        <ThemeToggle />
+        </div>
+      
       </header>
       </>
   );
