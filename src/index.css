@@ -2,9 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-    max-width: 1080px;
-}
+
 
 @layer base {
   :root {
