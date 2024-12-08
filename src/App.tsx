@@ -3,6 +3,7 @@ import {createBrowserRouter , RouterProvider} from 'react-router-dom'
 import Layout from './Pages/Layout';
 import Home from './Pages/Home';
 import Error from './Pages/Error';
+import { ThemeProvider } from './Providers/ThemeProvider';
 
 const Routes = createBrowserRouter([
   {path:'', element:<Layout/>,children:[
@@ -14,9 +15,11 @@ const Routes = createBrowserRouter([
 function App() {
   
   return <> 
+  <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
   <RouterProvider router={Routes}>
     
-  </RouterProvider>  
+  </RouterProvider> 
+  </ThemeProvider> 
 
   </>
 }
