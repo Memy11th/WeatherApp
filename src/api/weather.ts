@@ -8,7 +8,7 @@ class Weather {
         })
         return `${Endpoint}?${searchParams.toString()}`;
     };
-    private async fetchData(url:string):Promise<T> {
+    private async fetchData(url:string):Promise<unknown>{
             const res = await fetch(url);
             if(!res.ok){
                 throw new Error(`Weather Api Error: ${res.statusText}`);
@@ -19,8 +19,8 @@ class Weather {
 
     async getCurrentWeather(lat:number, lon:number) {
         const url = this.createUrl(`${API_CONFIG.BASE_URL}/weather`, {
-            lat,
-            lon,
+            lat:lat.toString(),
+            lon:lon.toString(),
             units: API_CONFIG.DEFAULT_PARAMS.units,
             appid: API_CONFIG.DEFAULT_PARAMS.appid
         });
@@ -29,8 +29,8 @@ class Weather {
     
     async getForecast(lat:number, lon:number) {
         const url = this.createUrl(`${API_CONFIG.BASE_URL}/forecast`, {
-            lat,
-            lon,
+            lat:lat.toString(),
+            lon:lon.toString(),
             units: API_CONFIG.DEFAULT_PARAMS.units,
             appid: API_CONFIG.DEFAULT_PARAMS.appid
         });
