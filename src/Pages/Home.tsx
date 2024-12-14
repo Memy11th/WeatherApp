@@ -6,21 +6,22 @@ import React from 'react'
 
 const Home = () => {  
     const {coordinates,error,isLoading,getLocation}=useGeoLocation();
-    console.log(coordinates)
+
+    
     React.useEffect(()=>{
         getLocation();
     },[]);
 
-    if(error){
+    if(error && !isLoading){
     return <>
-        <LocationError error={error} Fn={getLocation} ErrType={`Location Error`} />
+        <LocationError error={error} ErrType={`Location Error`} />
     </>
     }  
-    if(!coordinates){
-       return(
-        <LocationError error='Please enable access to location' Fn={getLocation} ErrType={`Location Error`} />
+    if(!coordinates && !isLoading){
+        return(
+            <LocationError error='Please enable access to location'  ErrType={`Location Error`} />
 
-       ) 
+        ) 
     }
     
     return (

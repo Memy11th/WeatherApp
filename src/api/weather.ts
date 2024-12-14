@@ -1,3 +1,4 @@
+import { Coordinates } from "@/interfaces/coordinates";
 import { API_CONFIG } from "./config";
 
 class Weather {
@@ -17,7 +18,7 @@ class Weather {
             return res.json();
     };
 
-    async getCurrentWeather(lat:number, lon:number) {
+    async getCurrentWeather({lat,lon}:Coordinates) {
         const url = this.createUrl(`${API_CONFIG.BASE_URL}/weather`, {
             lat:lat.toString(),
             lon:lon.toString(),
