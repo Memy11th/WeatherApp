@@ -7,7 +7,7 @@ const Reloader = ({isLoading , coordinates}:{isLoading:boolean,coordinates:Coord
             // Refetch weather data
     }
     }
-    return (
+    return <>
         <div className='flex justify-between'>
             <h1>My location</h1>
             <button disabled={isLoading} className='bg-slate-100 dark:bg-slate-900 p-2 rounded-xl' onClick={handleRefresh}>
@@ -15,7 +15,7 @@ const Reloader = ({isLoading , coordinates}:{isLoading:boolean,coordinates:Coord
             </button>
             
         </div>
-    )
+        </>
 }
 
 

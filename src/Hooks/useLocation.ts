@@ -56,8 +56,8 @@ export function useGeoLocation(){
                 })
             },{
                 enableHighAccuracy:true,
-                timeout:5000,
-                maximumAge:0
+                timeout:9000,
+                maximumAge:1000
             });
     }
 
