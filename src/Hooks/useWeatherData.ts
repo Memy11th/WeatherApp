@@ -19,5 +19,9 @@ export function useForecast(coordinates:Coordinates|null){
 }
 
 export function useGeocodeReverse (coordinates : Coordinates|null){
-    
+    return useQuery({
+        queryKey:['geoCodeReverse'],
+        queryFn:()=> coordinates ? WeatherApi.reverseGeocode(coordinates):null,
+        enabled : !!coordinates
+    })
 }

@@ -1,7 +1,7 @@
 import { Coordinates } from '@/interfaces/coordinates'
 import { RefreshCcw } from 'lucide-react'
 
-const Reloader = ({isLoading , coordinates}:{isLoading:boolean,coordinates:Coordinates}) => {
+const Reloader = ({isLoading , coordinates}:{isLoading:boolean,coordinates:Coordinates|null}) => {
     const handleRefresh = ()=>{
         if(!coordinates){
             // Refetch weather data
