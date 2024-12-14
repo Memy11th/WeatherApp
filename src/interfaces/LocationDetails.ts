@@ -1,7 +1,7 @@
 import { Coordinates } from "./coordinates";
 
 export interface LocationDetails {
-    coordinates:Coordinates,
+    coordinates:Coordinates|null,
     error: string | null,
     isLoading: boolean
 }

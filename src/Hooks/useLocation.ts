@@ -2,10 +2,7 @@ import { LocationDetails } from '@/interfaces/LocationDetails'
 import React, { useEffect } from 'react'
 export function useGeoLocation(){
     const [Location , setLocation] = React.useState<LocationDetails>({
-        coordinates:{
-            lat:null,
-            lon:null,
-        },
+        coordinates:null,
         error:null,
         isLoading:true,
     });
@@ -13,10 +10,7 @@ export function useGeoLocation(){
     const getLocation = ()=>{
             if(!navigator.geolocation){
                 setLocation({
-                    coordinates :{
-                        lat:null,
-                        lon:null
-                    },
+                    coordinates :null,
                     error:"Geolocation is not accessed by this browser",
                     isLoading:false
                 })
@@ -47,10 +41,7 @@ export function useGeoLocation(){
                         errMessage = "Unknown Error";
                 }
                 setLocation({
-                    coordinates :{
-                        lat:null,
-                        lon:null
-                    },
+                    coordinates :null,
                     error: errMessage,
                     isLoading:false
                 })

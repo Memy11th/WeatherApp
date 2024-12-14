@@ -17,3 +17,7 @@ export function useForecast(coordinates:Coordinates|null){
         enabled: !!coordinates
     })
 }
+
+export function useGeocodeReverse (coordinates : Coordinates|null){
+    
+}
