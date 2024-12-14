@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div>
                 5e5w5e5w5e5w5e
-                <Reloader isLoading={isLoading} />
+                <Reloader isLoading={isLoading} coordinates={coordinates} />
         </div>
     )
 }
