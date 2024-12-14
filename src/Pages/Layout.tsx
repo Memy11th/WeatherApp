@@ -5,7 +5,7 @@ import { Outlet } from "react-router-dom"
 const Layout = () => {
     return <>
         <Navbar/>
-        <div className="min-h-screen transition-all duration-500 p-2 ">
+        <div className="min-h-screen container mx-auto transition-all duration-500 p-2 ">
         <Outlet>
         </Outlet>
         </div>
