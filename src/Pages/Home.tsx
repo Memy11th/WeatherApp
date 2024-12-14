@@ -15,7 +15,13 @@ const Home = () => {
     return <>
         <LocationError error={error} Fn={getLocation} ErrType={`Location Error`} />
     </>
-}    
+    }  
+    if(!coordinates){
+       return(
+        <LocationError error='Please enable access to location' Fn={getLocation} ErrType={`Location Error`} />
+
+       ) 
+    }
     
     return (
         <div>
