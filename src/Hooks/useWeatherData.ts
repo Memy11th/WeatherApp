@@ -6,9 +6,10 @@ export function useWeatherData(coordinates:Coordinates|null){
     return useQuery({
             queryKey:['weather'],
             queryFn: ()=> coordinates ? WeatherApi.getCurrentWeather(coordinates):null,
-            enabled: !!coordinates
+            enabled: !!coordinates,
+            
         })
-}
+};
 
 export function useForecast(coordinates:Coordinates|null){
     return useQuery({
@@ -16,7 +17,7 @@ export function useForecast(coordinates:Coordinates|null){
         queryFn:()=> coordinates? WeatherApi.getForecast(coordinates) : null,
         enabled: !!coordinates
     })
-}
+};
 
 export function useGeocodeReverse (coordinates : Coordinates|null){
     return useQuery({
@@ -24,4 +25,4 @@ export function useGeocodeReverse (coordinates : Coordinates|null){
         queryFn:()=> coordinates ? WeatherApi.reverseGeocode(coordinates):null,
         enabled : !!coordinates
     })
-}
+};

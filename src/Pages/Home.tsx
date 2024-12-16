@@ -15,12 +15,12 @@ const Home = () => {
         getLocation();
     },[]);
 
-    if(error ){
+    if(error && !isLoading ){
     return <>
         <LocationError error={error} ErrType={`Location Error`} />
     </>
     }  
-    if(!coordinates ){
+    if(!coordinates&& !isLoading ){
         return(
             <LocationError error='Please enable access to location'  ErrType={`Location Error`} />
 
@@ -29,7 +29,6 @@ const Home = () => {
     
     return (
         <div>
-                5e5w5e5w5e5w5e
                 <Reloader isLoading={isLoading} coordinates={coordinates} />
         </div>
     )

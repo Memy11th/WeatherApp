@@ -8,7 +8,17 @@ import {QueryClient,QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      retry:2,
+      gcTime:1000*10,
+      staleTime:1000*20,
+      refetchOnMount:false,
+            
+    }
+  }
+})
 
 const Routes = createBrowserRouter([
   {path:'', element:<Layout/>,children:[
