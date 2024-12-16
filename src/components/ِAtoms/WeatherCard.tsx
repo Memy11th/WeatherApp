@@ -2,7 +2,7 @@ import { ForecastResponse } from '@/interfaces/ForecastResponse'
 import React from 'react'
 
 const WeatherCard = ({Forecast}:{Forecast:ForecastResponse|null}) => {
-    const {city,cnt,cod,list,message}=Forecast||{};
+    const {city,list,message}=Forecast||{};
     const {sunrise , sunset} = city||{};
     const getSunrise = (sunrise:number)=>{
         const sunriseDate = new Date(sunrise * 1000);
@@ -27,10 +27,9 @@ const WeatherCard = ({Forecast}:{Forecast:ForecastResponse|null}) => {
     
 
     return (
-        <div>
+        <div className='col-span-6 bg-slate-400 rounded-xl p-2 '>
             {getSunrise(sunrise||0)}
             {getSunset(sunset||0)}
-            {Forecast?.list.map((item,index)=><div key={index}>{item.weather[0].main}</div>)}
         </div>
     )
 }

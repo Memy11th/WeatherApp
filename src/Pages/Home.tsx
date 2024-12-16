@@ -1,3 +1,4 @@
+import GridContainer from "@/components/ِAtoms/GridContainer";
 import { LocationError } from "@/components/ِAtoms/LocationError";
 import Reloader from "@/components/ِAtoms/Reloader";
 import WeatherCard from "@/components/ِAtoms/WeatherCard";
@@ -35,7 +36,10 @@ const Home = () => {
     return (
         <div>
                 <Reloader isLoading={isLoading} coordinates={coordinates} />
-                <WeatherCard Forecast={forecast} />
+                <GridContainer cols={12} >
+                    <WeatherCard Forecast={forecast} />
+                </GridContainer>
+
         </div>
     )
 }
