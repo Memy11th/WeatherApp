@@ -15,6 +15,8 @@ const Home = () => {
     console.log(forecastQuery)
     console.log(weatherQuery)
     const forecast = forecastQuery?.data ?? null; 
+    const cityName = forecastQuery?.data?.city?.name ?? null;
+    const countryNameRes = forecastQuery?.data?.city?.country ?? null
 
 
     React.useEffect(()=>{
@@ -35,7 +37,7 @@ const Home = () => {
     
     return (
         <div>
-                <Reloader isLoading={isLoading} coordinates={coordinates} />
+                <Reloader isLoading={isLoading} coordinates={coordinates} cityName={cityName} countryName={countryNameRes} />
                 <GridContainer cols={12} >
                     <WeatherCard Forecast={forecast} />
                 </GridContainer>
