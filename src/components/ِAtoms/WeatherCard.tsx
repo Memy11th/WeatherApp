@@ -1,10 +1,12 @@
 import { ForecastResponse } from '@/interfaces/ForecastResponse'
-import React from 'react'
+import CurrentWeather from './CurrentWeather';
+import WeatherIcon from './WeatherIcon';
+import { WeatherResponse } from '@/interfaces/WeatherResponse';
 
-const WeatherCard = ({Forecast}:{Forecast:ForecastResponse|null}) => {
-    const {city,list,message}=Forecast||{};
+const WeatherCard = ({Forecast,Weather}:{Forecast:ForecastResponse|null ,Weather:WeatherResponse|null}) => {
+    const {city/*,list,message*/}=Forecast||{};
     const {sunrise , sunset} = city||{};
-    const getSunrise = (sunrise:number)=>{
+    const Sunrise = (sunrise:number)=>{
         const sunriseDate = new Date(sunrise * 1000);
         const sunriseTime = sunriseDate.toLocaleString('en-US', {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Auto-detect timezone
@@ -14,7 +16,7 @@ const WeatherCard = ({Forecast}:{Forecast:ForecastResponse|null}) => {
         });
         return sunriseTime
     }
-    const getSunset = (sunset:number)=>{
+    const Sunset = (sunset:number)=>{
         const sunsetDate = new Date(sunset * 1000);
         const sunsetTime = sunsetDate.toLocaleString('en-US', {
         timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone, // Auto-detect timezone
@@ -24,13 +26,14 @@ const WeatherCard = ({Forecast}:{Forecast:ForecastResponse|null}) => {
         });
         return sunsetTime
     }
-    
-
+console.log(Weather)
     return (
-        <div className='col-span-6 bg-slate-400 rounded-xl p-2 '>
-            {getSunrise(sunrise||0)}
-            {getSunset(sunset||0)}
-        </div>
+                <div className='col-span-12 flex  gap-6 justify-center items-center'>
+                        <CurrentWeather />
+                        <WeatherIcon />
+                </div>
+                    
+            
     )
 }
 

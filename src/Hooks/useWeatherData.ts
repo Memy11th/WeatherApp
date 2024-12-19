@@ -2,10 +2,10 @@ import { WeatherApi } from '@/api/weather';
 import { Coordinates } from '@/interfaces/coordinates';
 import { useQuery, UseQueryResult } from '@tanstack/react-query';
 
-export function useWeatherData(coordinates:Coordinates|null){
-    return useQuery({
+export function useWeatherData<T extends unknown | null>(coordinates:Coordinates|null): UseQueryResult<T>{
+    return useQuery<T>({
             queryKey:['weather'],
-            queryFn: ()=> coordinates ? WeatherApi.getCurrentWeather(coordinates):null,
+            queryFn: ()=> coordinates ? WeatherApi.getCurrentWeather(coordinates) as T:null as T,
             enabled: !!coordinates,
             
         })

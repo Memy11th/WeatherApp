@@ -1,6 +1,6 @@
 import React from 'react'
 
-const GridContainer = ({cols,children}:{cols:number,children:React.ReactNode}) => {
+const GridContainer = ({cols,children,className}:{cols:number,children:React.ReactNode,className?:string}) => {
     const classNameDynamic = {
             1: 'grid grid-cols-1',
             2: 'grid grid-cols-2',
@@ -16,7 +16,7 @@ const GridContainer = ({cols,children}:{cols:number,children:React.ReactNode}) =
             12: 'grid grid-cols-12',
     }[cols]
     return <>
-    <div className={`${classNameDynamic}`}>
+    <div className={`${classNameDynamic} ${className}`}>
         {children}
     </div>
     

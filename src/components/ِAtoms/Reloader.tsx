@@ -1,10 +1,12 @@
+import { useGeoLocation } from '@/Hooks/useLocation'
 import { Coordinates } from '@/interfaces/coordinates'
 import { RefreshCcw } from 'lucide-react'
 
 const Reloader = ({isLoading , coordinates,cityName ,countryName}:{isLoading:boolean,coordinates:Coordinates|null , cityName:string|null,countryName:string|null}) => {
+    const {getLocation} = useGeoLocation();
     const handleRefresh = ()=>{
         if(!coordinates){
-            // Refetch weather data
+            getLocation();
     }
     }
     return <>
