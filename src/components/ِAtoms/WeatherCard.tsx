@@ -1,11 +1,7 @@
-import { ForecastResponse } from '@/interfaces/ForecastResponse'
 import CurrentWeather from './CurrentWeather';
 import WeatherIcon from './WeatherIcon';
-import { WeatherResponse } from '@/interfaces/WeatherResponse';
 
-const WeatherCard = ({Forecast,Weather}:{Forecast:ForecastResponse|null ,Weather:WeatherResponse|null}) => {
-    const {city/*,list,message*/}=Forecast||{};
-    const {sunrise , sunset} = city||{};
+const WeatherCard = () => {
     const Sunrise = (sunrise:number)=>{
         const sunriseDate = new Date(sunrise * 1000);
         const sunriseTime = sunriseDate.toLocaleString('en-US', {
@@ -26,10 +22,9 @@ const WeatherCard = ({Forecast,Weather}:{Forecast:ForecastResponse|null ,Weather
         });
         return sunsetTime
     }
-console.log(Weather)
     return (
-                <div className='col-span-12 flex  gap-6 justify-center items-center'>
-                        <CurrentWeather />
+                <div className=' col-span-12 md:col-span-5 flex  gap-6 justify-between items-center bg-slate-200/45 dark:bg-slate-800/35 rounded-xl p-4'>
+                        <CurrentWeather/>
                         <WeatherIcon />
                 </div>
                     

@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import GridContainer from "@/components/ِAtoms/GridContainer";
 import { LocationError } from "@/components/ِAtoms/LocationError";
 import Reloader from "@/components/ِAtoms/Reloader";
@@ -18,7 +17,7 @@ const Home = () => {
     console.log(weatherQuery)
     const cityName = forecastQuery?.data?.city?.name ?? null;
     const countryNameRes = forecastQuery?.data?.city?.country ?? null
-
+    
 
     React.useEffect(()=>{
         getLocation();
@@ -39,8 +38,8 @@ const Home = () => {
     return (
         <div>
                 <Reloader isLoading={isLoading} coordinates={coordinates} cityName={cityName} countryName={countryNameRes} />
-                <GridContainer cols={12} className='gap-6 p-2 bg-slate-200/45 dark:bg-black/25 mt-4'>
-                    <WeatherCard Forecast={forecastQuery?.data ?? null} Weather={weatherQuery?.data ?? null} /> 
+                <GridContainer cols={12} className='gap-6 p-2  mt-4'>
+                    <WeatherCard  Weather={weatherQuery?.data ?? null} /> 
                 </GridContainer>
 
 
