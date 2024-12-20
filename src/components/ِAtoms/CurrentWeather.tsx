@@ -2,15 +2,18 @@ import { useGeoLocation } from "@/Hooks/useLocation";
 import { useWeatherData } from "@/Hooks/useWeatherData";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
 import { ArrowDown, ArrowUp, Droplets, Gauge, Wind } from "lucide-react";
+import { Skeleton } from "../ui/skeleton";
 
 const CurrentWeather = () => {
-        const {coordinates}=useGeoLocation();
+        const {coordinates,isLoading}=useGeoLocation();
         const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
         const FormatTemp = (temp:number)=>{
                 const newTemp =`${Math.round(temp)}°C` ;
                 return newTemp as string
         }
 
+
+    
     return <>
         <div>
             <h3>{weatherQuery.data?.name} , 
@@ -18,6 +21,7 @@ const CurrentWeather = () => {
             {weatherQuery.data?.sys.country}
             </span>
             </h3>
+            
 
             <div>
                 <div className="flex gap-6 justify-center items-center">
@@ -55,10 +59,10 @@ const CurrentWeather = () => {
                     </div>
                             
                     <div className="flex flex-col gap-0">
-                        <h4 className="font-medium text-sm text-muted-foreground ">Humidity</h4>
+                        <h4 className="font-medium text-sm text-muted-foreground ">Wind speed</h4>
                     <span className="text-blue-600 flex items-center gap-1">
                                 <Wind className="h-4 w-4" />
-                                <span className="text-muted-foreground  text-sm ">{weatherQuery.data?.wind.speed} <span className="text-sm text-muted-foreground">Km/h</span> </span>
+                                <span className="text-muted-foreground  text-sm ">{weatherQuery.data?.wind.speed} <span className="text-sm text-muted-foreground">m/s</span> </span>
                             </span>
                     </div>
 
@@ -66,7 +70,7 @@ const CurrentWeather = () => {
                         <h4 className="font-medium text-sm text-muted-foreground ">Pressure</h4>
                     <span className="text-blue-600 flex items-center gap-1">
                                 <Gauge className="h-4 w-4" />
-                                <span className="text-muted-foreground text-sm ">{weatherQuery.data?.main.pressure} <span className="text-sm text-muted-foreground">Pascal</span> </span>
+                                <span className="text-muted-foreground text-sm ">{weatherQuery.data?.main.pressure} <span className="text-sm text-muted-foreground">hPa</span> </span>
                             </span>
                     </div>
                     
