@@ -41,7 +41,7 @@ const WeatherCard = () => {
                     <Skeleton className="h-4 w-[150px]" />
             </div>
             </div>
-          )
+        )
     }
     return (
                 <div className=' col-span-12 md:col-span-5 flex  gap-6 justify-between items-center bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4'>

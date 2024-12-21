@@ -15,7 +15,7 @@ const CurrentWeather = () => {
 
     
     return <>
-        <div>
+        <div className="">
             <h3>{weatherQuery.data?.name} , 
             <span className="text-muted-foreground">
             {weatherQuery.data?.sys.country}
@@ -24,7 +24,7 @@ const CurrentWeather = () => {
             
 
             <div>
-                <div className="flex gap-6 justify-center items-center">
+                <div className="flex gap-6 space-y-3 justify-center items-center">
                         <div>
                             <h1 className="text-4xl font-extrabold">{FormatTemp(weatherQuery.data?.main.temp ?? 0)}</h1>
                         </div>
@@ -32,7 +32,7 @@ const CurrentWeather = () => {
                         <p className="text-muted-foreground text-sm">
                             feels like {FormatTemp(weatherQuery.data?.main.feels_like ?? 0)}
                         </p>
-                        <div className="flex justify-center items-center gap-4">
+                        <div className="flex justify-center  items-center gap-4">
                             <span className="flex items-center justify-center">
                             <ArrowDown className={'h-4 w-4 text-blue-600'} />
                             {FormatTemp(weatherQuery.data?.main.temp_min ?? 0)}
@@ -49,7 +49,7 @@ const CurrentWeather = () => {
                         
                         
                 </div>
-                <div className="flex gap-6 items-center ">
+                <div className="flex gap-6  items-center ">
                     <div className="flex flex-col gap-0">
                         <h4 className="font-medium text-sm text-muted-foreground ">Humidity</h4>
                     <span className="text-blue-600 flex items-center gap-1">
