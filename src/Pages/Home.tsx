@@ -4,10 +4,12 @@ import HourlyChart from "@/components/ِAtoms/HourlyChart";
 import { LocationError } from "@/components/ِAtoms/LocationError";
 import Reloader from "@/components/ِAtoms/Reloader";
 import WeatherCard from "@/components/ِAtoms/WeatherCard";
+import WeatherDetails from "@/components/ِAtoms/WeatherDetails";
 import { useGeoLocation } from "@/Hooks/useLocation";
 import { useForecast, useWeatherData } from "@/Hooks/useWeatherData";
 import { ForecastResponse } from "@/interfaces/ForecastResponse";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
+import { Grid } from "lucide-react";
 import React from 'react';
 
 
@@ -37,13 +39,15 @@ const Home = () => {
     }
     
     return (
-        <div>
+        <div className="space-y-5">
                 <Reloader isLoading={isLoading} coordinates={coordinates} />
-                <GridContainer cols={12} className='gap-6 p-2 mt-4'>
+                <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard   /> 
                     <HourlyChart />
                 </GridContainer>
-
+                <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
+                    <WeatherDetails />
+                </GridContainer>
 
         </div>
     )
