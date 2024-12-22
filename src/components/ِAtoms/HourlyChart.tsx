@@ -4,7 +4,7 @@ import { useGeoLocation } from '@/Hooks/useLocation';
 import { useForecast } from '@/Hooks/useWeatherData';
 import { ForecastResponse } from '@/interfaces/ForecastResponse';
 import {format} from 'date-fns'
-import { Divide } from 'lucide-react';
+import { Skeleton } from '../ui/skeleton';
 const HourlyChart = () => {
         const {coordinates}=useGeoLocation();
         const forecastQuery = useForecast<ForecastResponse>(coordinates);
@@ -15,6 +15,21 @@ const HourlyChart = () => {
                 Feels_Like : Math.round(item.main.feels_like),
             }
         ));
+
+        if(forecastQuery.isLoading){
+            return (
+                <Card className=' col-span-12 border-0 md:col-span-7 bg-blue-300/35 dark:bg-slate-800/35 '>
+    <CardHeader>
+        <CardTitle className='text-muted-foreground'>Today's Temperature</CardTitle>
+    </CardHeader>
+    <CardContent>
+    <div className='h-[200px] w-full'>
+    <Skeleton className=' rounded-lg p-4 w-full h-full bg-slate-800/40 ' />
+    </div>
+    </CardContent>
+    </Card>
+            )
+        }
     return <>
     <Card className=' col-span-12 border-0 md:col-span-7 bg-blue-300/35 dark:bg-slate-800/35 '>
     <CardHeader>
@@ -41,6 +56,7 @@ const HourlyChart = () => {
                 </div>
                 )
             }
+            return null;
         }}
         />
         <XAxis

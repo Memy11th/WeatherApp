@@ -47,7 +47,7 @@ export function useGeoLocation(){
                 })
             },{
                 enableHighAccuracy:true,
-                timeout:9000,
+                timeout:15000,
                 maximumAge:1000
             });
     }

@@ -1,3 +1,4 @@
+import { Skeleton } from "@/components/ui/skeleton";
 import GridContainer from "@/components/ِAtoms/GridContainer";
 import HourlyChart from "@/components/ِAtoms/HourlyChart";
 import { LocationError } from "@/components/ِAtoms/LocationError";
@@ -22,6 +23,7 @@ const Home = () => {
         getLocation();
     },[]);
 
+    
     if(error && !isLoading ){
     return <>
         <LocationError error={error} ErrType={`Location Error`} />

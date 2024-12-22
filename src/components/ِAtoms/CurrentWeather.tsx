@@ -2,10 +2,9 @@ import { useGeoLocation } from "@/Hooks/useLocation";
 import { useWeatherData } from "@/Hooks/useWeatherData";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
 import { ArrowDown, ArrowUp, Droplets, Gauge, Wind } from "lucide-react";
-import { Skeleton } from "../ui/skeleton";
 
 const CurrentWeather = () => {
-        const {coordinates,isLoading}=useGeoLocation();
+        const {coordinates}=useGeoLocation();
         const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
         const FormatTemp = (temp:number)=>{
                 const newTemp =`${Math.round(temp)}°C` ;
