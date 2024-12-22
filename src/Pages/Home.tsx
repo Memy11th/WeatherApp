@@ -1,4 +1,5 @@
 import { Skeleton } from "@/components/ui/skeleton";
+import Forecast from "@/components/ِAtoms/Forecast";
 import GridContainer from "@/components/ِAtoms/GridContainer";
 import HourlyChart from "@/components/ِAtoms/HourlyChart";
 import { LocationError } from "@/components/ِAtoms/LocationError";
@@ -47,6 +48,7 @@ const Home = () => {
                 </GridContainer>
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherDetails />
+                    <Forecast />
                 </GridContainer>
 
         </div>
