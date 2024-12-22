@@ -4,6 +4,7 @@ import { useGeoLocation } from '@/Hooks/useLocation';
 import { useForecast } from '@/Hooks/useWeatherData';
 import { ForecastResponse } from '@/interfaces/ForecastResponse';
 import {format} from 'date-fns'
+import { Divide } from 'lucide-react';
 const HourlyChart = () => {
         const {coordinates}=useGeoLocation();
         const forecastQuery = useForecast<ForecastResponse>(coordinates);
@@ -24,6 +25,24 @@ const HourlyChart = () => {
     <ResponsiveContainer className={' rounded-lg p-4'} width={'100%'} height="100%">
         <LineChart 
         data={chartData}> 
+        <Tooltip
+        content={({active , payload})=>{
+            if(active && payload && payload.length){
+                return (
+                <div className='p-2 rounded-xl bg-slate-100 flex flex-row justify-center items-center gap-3 dark:bg-slate-800 '>
+                    <div className='flex flex-col text-muted-foreground'>
+                            <span className='text-xs'>Temp.</span>
+                            <p className='text-xs'>{payload[0].value} °C</p>
+                    </div>
+                    <div className='flex flex-col text-muted-foreground'>
+                            <span className='text-xs'>Feels like</span>
+                            <p className='text-xs'>{payload[1].value} °C</p>
+                    </div>
+                </div>
+                )
+            }
+        }}
+        />
         <XAxis
             dataKey={'time'}
             stroke="#888888"
