@@ -1,4 +1,3 @@
-import { Skeleton } from "@/components/ui/skeleton";
 import Forecast from "@/components/ِAtoms/Forecast";
 import GridContainer from "@/components/ِAtoms/GridContainer";
 import HourlyChart from "@/components/ِAtoms/HourlyChart";
@@ -10,15 +9,16 @@ import { useGeoLocation } from "@/Hooks/useLocation";
 import { useForecast, useWeatherData } from "@/Hooks/useWeatherData";
 import { ForecastResponse } from "@/interfaces/ForecastResponse";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
-import { Grid } from "lucide-react";
 import React from 'react';
 
 
-const Home = () => {  
+const Dashboard = () => {  
     const {coordinates,error,isLoading,getLocation}=useGeoLocation();
     const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
     const forecastQuery = useForecast<ForecastResponse>(coordinates);
-    console.log(forecastQuery)
+    console.log('Forecast query :' )
+    console.log( forecastQuery)
+    console.log('weather query : ' )
     console.log(weatherQuery)
     
 
@@ -55,4 +55,4 @@ const Home = () => {
     )
 }
 
-export default Home
+export default Dashboard

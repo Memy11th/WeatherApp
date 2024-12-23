@@ -1,11 +1,11 @@
 import './App.css';
 import {createBrowserRouter , RouterProvider} from 'react-router-dom'
 import Layout from './Pages/Layout';
-import Home from './Pages/Home';
 import Error from './Pages/Error';
 import { ThemeProvider } from './Providers/ThemeProvider';
 import {QueryClient,QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import Dashboard from './Pages/Dashboard';
 
 
 const queryClient = new QueryClient({
@@ -22,7 +22,7 @@ const queryClient = new QueryClient({
 
 const Routes = createBrowserRouter([
   {path:'', element:<Layout/>,children:[
-    {index:true,element:<Home/>},
+    {index:true,element:<Dashboard/>},
     {path:'*',element:<Error/>}
   ]
   }

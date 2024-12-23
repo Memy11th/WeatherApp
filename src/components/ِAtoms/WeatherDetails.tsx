@@ -2,7 +2,7 @@ import { useWeatherData } from "@/Hooks/useWeatherData";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
 import SingleInfo from "./SingleInfo"
 import { useGeoLocation } from "@/Hooks/useLocation";
-import { Compass, Droplet, Gauge, Grid, MapPin, Sunrise, Sunset, Target, Thermometer } from "lucide-react";
+import { Compass, Droplet, Gauge, MapPin, Sunrise, Sunset, Target, Thermometer } from "lucide-react";
 import { format } from "date-fns";
 import GridContainer from "./GridContainer";
 
@@ -69,6 +69,7 @@ const WeatherDetails = () => {
         }
         
     ] : [];
+    // Loading 
     return <>       
                 <div className="col-span-12 md:col-span-6  gap-4 bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4 ">
                 <h4 className="text-muted-foreground">Weather Details</h4>    
