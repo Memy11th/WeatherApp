@@ -6,20 +6,13 @@ import Reloader from "@/components/ِAtoms/Reloader";
 import WeatherCard from "@/components/ِAtoms/WeatherCard";
 import WeatherDetails from "@/components/ِAtoms/WeatherDetails";
 import { useGeoLocation } from "@/Hooks/useLocation";
-import { useForecast, useWeatherData } from "@/Hooks/useWeatherData";
-import { ForecastResponse } from "@/interfaces/ForecastResponse";
-import { WeatherResponse } from "@/interfaces/WeatherResponse";
+
 import React from 'react';
 
 
 const Dashboard = () => {  
     const {coordinates,error,isLoading,getLocation}=useGeoLocation();
-    const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
-    const forecastQuery = useForecast<ForecastResponse>(coordinates);
-    console.log('Forecast query :' )
-    console.log( forecastQuery)
-    console.log('weather query : ' )
-    console.log(weatherQuery)
+
     
 
     React.useEffect(()=>{
