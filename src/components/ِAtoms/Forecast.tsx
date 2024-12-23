@@ -37,6 +37,8 @@ const Forecast = () => {
         
     },{} as Record<string,DailyForecast> );
     console.log(dailyForecast)
+    const nextFiveDays = Object.values(dailyForecast??{}).slice(1,6);
+    console.log(nextFiveDays);
     return <>
         <div className="md:col-span-6 col-span-12  bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4 space-y-3 ">
             <h4 className="text-muted-foreground">5-Days Forecast</h4>
