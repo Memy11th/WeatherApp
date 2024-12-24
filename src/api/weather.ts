@@ -47,6 +47,15 @@ class Weather {
         });
         return this.fetchData(url);
     };
+
+    async getBySearch(query:string) {
+        const url = this.createUrl(`${API_CONFIG.GEO}/direct`, {
+            query:query.toString(),
+            limit:5,
+            appid: API_CONFIG.DEFAULT_PARAMS.appid
+        });
+        return this.fetchData(url);
+    };
 }
 
 export const WeatherApi = new Weather();

@@ -1,3 +1,4 @@
+import SearchBar from "../ِAtoms/SearchBar";
 import ThemeToggle from "../ِAtoms/ThemeToggle";
 
 export function Navbar() {
@@ -8,7 +9,8 @@ export function Navbar() {
         <div>
           <h5 className="font-bold">M11 weather</h5>
         </div>
-        <div >
+        <div  className="flex justify-center items-center gap-4">
+          <SearchBar />
           <ThemeToggle />
         </div>
 
