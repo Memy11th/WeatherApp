@@ -37,10 +37,10 @@ const Forecast = () => {
             return acc;
         
     },{} as Record<string,DailyForecast> );
-    const nextFiveDays = Object.values(dailyForecast??{}).slice(1,6);
+    const nextFiveDays = Object.values(dailyForecast??{}).slice(0,6);
     return <>
         <div className="md:col-span-6 col-span-12   bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4 space-y-3 ">
-            <h4 className="text-muted-foreground">5-Days Forecast</h4>
+            <h4 className="text-muted-foreground">6-Days Forecast</h4>
                 <div className="flex flex-col w-full h-full gap-6   ">
                         {nextFiveDays.map((Day)=>(
                             <div key={Day.date} className="flex justify-evenly items-center p-3 bg-white dark:bg-slate-900/35 rounded-xl">

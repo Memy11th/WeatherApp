@@ -1,7 +1,7 @@
 import React from 'react';
-import {CommandDialog,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator,CommandShortcut,} from "@/components/ui/command"
+import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator,CommandShortcut,} from "@/components/ui/command"
 import { Button } from '../ui/button';
-import { Search } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
 import { DialogTitle } from '../ui/dialog';
 const SearchBar = () => {
@@ -11,8 +11,9 @@ const SearchBar = () => {
         setQuery(e.target.value)
     }
     const {isLoading,data} = useSearchCity(query);
-    const Results = Object.values(data ?? [])
-    console.log(Results)
+    const Results = Object.values(data??{});
+    console.log(Results);
+
     // useEffect to open the search command by clicking CTRL+S
     React.useEffect(() => {
         const down = (e: KeyboardEvent) => {
@@ -33,14 +34,25 @@ const SearchBar = () => {
             </Button>
     
             <CommandDialog open={open} onOpenChange={setOpen}>
-                <DialogTitle >M11 Search engine</DialogTitle>
+                <Command>
             <CommandInput onInputCapture={handleSearch} value={query} placeholder="Search cities" />
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
                 <CommandGroup heading="Suggestions">
-                        <CommandItem ></CommandItem>
+                    {Results.map((city)=>(<CommandItem key={city.lat}  value={city.name} >
+                    <span>{city.name}</span>
+                    {city.state && (
+                        <span className="text-sm text-muted-foreground">
+                            , {city.state}
+                        </span>
+                        )}
+                        <span className="text-sm text-muted-foreground">
+                        , {city.country}
+                        </span></CommandItem>))}
+                        
                 </CommandGroup>
             </CommandList>
+            </Command>
             </CommandDialog>
 
             </>
