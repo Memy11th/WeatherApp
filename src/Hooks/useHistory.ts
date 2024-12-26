@@ -23,5 +23,13 @@ export const useSearchHistory =()=>{
             return newHistory;
         }
     
-    })
+    });
+
+    const removeFromHistory = useMutation({
+        mutationFn : async()=>{
+            setHistory([]);
+            return [];
+        }
+    });
+    return {history : historyQuery.data??[] , addToHistory , removeFromHistory};
 }
