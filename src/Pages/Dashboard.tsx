@@ -38,11 +38,10 @@ const Dashboard = () => {
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard   /> 
                     <HourlyChart />
-                </GridContainer>
-                <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherDetails />
                     <Forecast />
                 </GridContainer>
+                    
 
         </div>
     )

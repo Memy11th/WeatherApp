@@ -71,10 +71,10 @@ const WeatherDetails = () => {
     ] : [];
     // Loading 
     return <>       
-                <div className="col-span-12 md:col-span-6  gap-4 bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4 ">
+                <div className="col-span-12 md:col-span-6 space-y-9  gap-4 bg-blue-300/35 dark:bg-slate-800/35 rounded-xl p-4 ">
                 <h4 className="text-muted-foreground">Weather Details</h4>    
 
-                <GridContainer cols={12} className="gap-4 justify-between items-center "> 
+                <GridContainer cols={12} className="gap-4  justify-between items-center "> 
                 { Details.map((item)=>(
                     <SingleInfo
                     key={item.Key} 

@@ -51,7 +51,7 @@ class Weather {
     async getBySearch(query:string) {
         const url = this.createUrl(`${API_CONFIG.GEO}/direct`, {
             q:query,
-            limit:3,
+            limit:6,
             appid: API_CONFIG.DEFAULT_PARAMS.appid
         });
         return this.fetchData(url);

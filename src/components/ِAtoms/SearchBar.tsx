@@ -1,9 +1,8 @@
 import React from 'react';
 import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator,CommandShortcut,} from "@/components/ui/command"
 import { Button } from '../ui/button';
-import { Search, Star } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
-import { DialogTitle } from '../ui/dialog';
 const SearchBar = () => {
     const [open , setOpen] = React.useState(false)
     const [query,setQuery] = React.useState('')
@@ -24,7 +23,11 @@ const SearchBar = () => {
             }
             document.addEventListener("keydown", down)
             return () => document.removeEventListener("keydown", down)
-        }, [])
+        }, []);
+
+        // a useEffect to refresh the search results when the query changes
+        React.useEffect(()=>{   
+        },[query])
 
         return (
             <>
@@ -36,10 +39,11 @@ const SearchBar = () => {
             <CommandDialog open={open} onOpenChange={setOpen}>
                 <Command>
             <CommandInput onInputCapture={handleSearch} value={query} placeholder="Search cities" />
+            
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
-                <CommandGroup heading="Suggestions">
-                    {Results.map((city)=>(<CommandItem key={city.lat}  value={city.name} >
+                {query.length >= 3 ? (<CommandGroup heading="Suggestions">
+                    {Results?.map((city)=>(<CommandItem key={city.lat}  value={city.name} >
                     <span>{city.name}</span>
                     {city.state && (
                         <span className="text-sm text-muted-foreground">
@@ -50,7 +54,8 @@ const SearchBar = () => {
                         , {city.country}
                         </span></CommandItem>))}
                         
-                </CommandGroup>
+                </CommandGroup>) : null}
+                
             </CommandList>
             </Command>
             </CommandDialog>
