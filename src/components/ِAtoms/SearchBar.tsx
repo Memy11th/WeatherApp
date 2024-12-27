@@ -10,7 +10,7 @@ import { useFavorites } from '@/Hooks/useFavorite';
 const SearchBar = () => {
     const navigate = useNavigate();
     const {history,addToHistory,clearHistory} = useSearchHistory();
-    const {favorites,addToFavorites,isFavorite} = useFavorites();
+    const {favorites} = useFavorites();
     const [open , setOpen] = React.useState(false)
     const [query,setQuery] = React.useState('')
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>)=>{

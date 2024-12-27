@@ -7,20 +7,22 @@ import { useForecast, useWeatherData } from '@/Hooks/useWeatherData';
 import { ForecastResponse } from '@/interfaces/ForecastResponse';
 import { WeatherResponse } from '@/interfaces/WeatherResponse';
 import { StarIcon } from 'lucide-react';
-import { useParams, useSearchParams } from 'react-router-dom';
+import {  useSearchParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
+
 import React from'react';
-import { useFavorites } from '@/Hooks/useFavorite';
+// import { useFavorites } from '@/Hooks/useFavorite';
 
 const City = () => {
     const [searchParams] = useSearchParams();
-    const params = useParams(); 
+    // const params = useParams(); 
     const lat = parseFloat(searchParams.get('lat') || '0');
     const lon = parseFloat(searchParams.get('lon') || '0');
     const coordinates = { lat, lon };
     const {data:forecastData,isLoading:forecastLoading} = useForecast<ForecastResponse>(coordinates);
     const {data:weatherData,isLoading:weatherLoading} = useWeatherData<WeatherResponse>(coordinates);
     const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
-    const {addToFavorites,isFavorite} = useFavorites();
+    // const {addToFavorites,isFavorite} = useFavorites();
     
 
     console.log(weatherData);
