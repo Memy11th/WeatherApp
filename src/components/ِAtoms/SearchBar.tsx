@@ -1,5 +1,5 @@
 import React from 'react';
-import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator,CommandShortcut,} from "@/components/ui/command"
+import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator} from "@/components/ui/command"
 import { Button } from '../ui/button';
 import { Clock, Search, SearchIcon } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
@@ -68,7 +68,7 @@ const SearchBar = () => {
                         <span>
                             <SearchIcon className='h-4 w-4' />
                         </span>
-                        <button onClick={()=>clearHistory.mutate()} className=' underline p-1 text-xs '>
+                        <button onClick={()=>clearHistory.mutate()} className=' underline p-1 text-xs  '>
                             Clear all
                         </button>
                     </div>
@@ -77,6 +77,7 @@ const SearchBar = () => {
                             key={item.id}
                             value={`${item.lat}|${item.lon}|${item.name}|${item.country}`}
                             onSelect={handleSelect}
+                            className='cursor-pointer'
                             >
                             <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
                             <span>{item.name}</span>
