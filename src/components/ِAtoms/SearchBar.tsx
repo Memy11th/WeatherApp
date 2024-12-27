@@ -1,14 +1,16 @@
 import React from 'react';
 import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator} from "@/components/ui/command"
 import { Button } from '../ui/button';
-import { Clock, Search, SearchIcon } from 'lucide-react';
+import { Clock, Heart, Search, SearchIcon, StarIcon } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
 import { useSearchHistory } from '@/Hooks/useHistory';
 import { useNavigate } from 'react-router-dom';
 import { format } from 'date-fns';
+import { useFavorites } from '@/Hooks/useFavorite';
 const SearchBar = () => {
     const navigate = useNavigate();
     const {history,addToHistory,clearHistory} = useSearchHistory();
+    const {favorites,addToFavorites,isFavorite} = useFavorites();
     const [open , setOpen] = React.useState(false)
     const [query,setQuery] = React.useState('')
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>)=>{
@@ -61,7 +63,41 @@ const SearchBar = () => {
             <CommandInput onInputCapture={handleSearch} value={query} placeholder="Search cities" />
             
             <CommandList>
-                <CommandEmpty>No results found.</CommandEmpty>
+            <CommandEmpty>Type to search...</CommandEmpty>
+
+                {!isLoading && Results.length === 0 && query.length > 2 && <>
+                    <CommandEmpty>No results found.</CommandEmpty>
+                </>}
+                {favorites.length > 0 && <>
+                    <CommandGroup heading='Favorite Cities'>
+                    <div className='flex justify-between text-muted-foreground text-xs items-center'>
+                        <span>
+                            <StarIcon className='h-4 w-4' />
+                        </span>
+                        <button onClick={()=>navigate('/favorites')} className=' underline p-1 text-xs  '>
+                            Visit favorites
+                        </button>
+                    </div>
+
+                    {favorites.map((city)=>(
+                        <CommandItem
+                        key={city.id}
+                        value={`${city.lat}|${city.lon}|${city.name}|${city.country}`}
+                        onSelect={handleSelect}
+                        className='cursor-pointer'
+                        > 
+                            <span>{city.name}</span>
+                            {city.state && (
+                            <span className="text-sm text-muted-foreground">
+                                , {city.state}
+                            </span>
+                            )},
+                            <span>{city.country}</span>
+
+                        </CommandItem>))}
+                    </CommandGroup>
+                    <CommandSeparator/>
+                </>}
                 {history.length > 0 &&<>
                 <CommandGroup heading='Recent Search'>
                     <div className='flex justify-between text-muted-foreground text-xs items-center'>
