@@ -1,7 +1,7 @@
 import React from 'react';
 import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator} from "@/components/ui/command"
 import { Button } from '../ui/button';
-import { Clock, Heart, Search, SearchIcon, StarIcon } from 'lucide-react';
+import { Clock, Search, SearchIcon, StarIcon } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
 import { useSearchHistory } from '@/Hooks/useHistory';
 import { useNavigate } from 'react-router-dom';
@@ -93,6 +93,7 @@ const SearchBar = () => {
                             </span>
                             )},
                             <span>{city.country}</span>
+                            
 
                         </CommandItem>))}
                     </CommandGroup>
@@ -130,9 +131,7 @@ const SearchBar = () => {
                             </span>
                         </CommandItem>
                     ))}
-                    <CommandItem>
-                        {/* Recent searches here*/}
-                    </CommandItem>
+                    
                 </CommandGroup>
                 <CommandSeparator/></>}
                 

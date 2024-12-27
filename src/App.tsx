@@ -6,7 +6,7 @@ import { ThemeProvider } from './Providers/ThemeProvider';
 import {QueryClient,QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Dashboard from './Pages/Dashboard';
-import SelectedCity from './Pages/SelectedCity';
+import City from './Pages/City';
 
 
 const queryClient = new QueryClient({
@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
 const Routes = createBrowserRouter([
   {path:'', element:<Layout/>,children:[
     {index:true,element:<Dashboard/>},
-    {path:'/city/:cityName',element:<SelectedCity />},
+    {path:'/city/:cityName',element:<City />},
     {path:'*',element:<Error/>}
   ]
   }

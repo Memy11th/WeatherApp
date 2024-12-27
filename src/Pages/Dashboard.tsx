@@ -12,7 +12,7 @@ import React from 'react';
 
 const Dashboard = () => {  
     const {coordinates,error,isLoading,getLocation}=useGeoLocation();
-
+    
     
 
     React.useEffect(()=>{
@@ -36,7 +36,7 @@ const Dashboard = () => {
         <div className="space-y-5">
                 <Reloader isLoading={isLoading} coordinates={coordinates} />
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
-                    <WeatherCard   /> 
+                    <WeatherCard  /> 
                     <HourlyChart />
                     <WeatherDetails />
                     <Forecast />
