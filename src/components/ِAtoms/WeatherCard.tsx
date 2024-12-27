@@ -7,7 +7,7 @@ import { Skeleton } from '../ui/skeleton';
 import { WeatherResponse } from '@/interfaces/WeatherResponse';
 
 
-const WeatherCard = ({loadingWeather,Data,loadingLocation}:{loadingLocation:boolean,loadingWeather:boolean,Data:WeatherResponse|null}) => {
+const WeatherCard = ({loadingWeather,Data,loadingLocation}:{loadingLocation?:boolean,loadingWeather:boolean,Data:WeatherResponse|null}) => {
     // const {isLoading}=useGeoLocation();
     // const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
     if(loadingLocation || loadingWeather ) return(

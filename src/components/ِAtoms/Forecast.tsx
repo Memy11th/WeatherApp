@@ -1,5 +1,5 @@
-import { useGeoLocation } from "@/Hooks/useLocation";
-import { useForecast } from "@/Hooks/useWeatherData";
+// import { useGeoLocation } from "@/Hooks/useLocation";
+// import { useForecast } from "@/Hooks/useWeatherData";
 import { ForecastResponse } from "@/interfaces/ForecastResponse";
 import { format } from "date-fns";
 import { ArrowDown, ArrowUp, Droplet, Wind } from "lucide-react";
@@ -17,10 +17,10 @@ interface DailyForecast{
     icon: string;
   };
 }
-const Forecast = () => {
-    const {coordinates}=useGeoLocation();
-    const forecastQuery = useForecast<ForecastResponse>(coordinates);
-    const dailyForecast = forecastQuery.data?.list.reduce((acc,forecastValue)=>{
+const Forecast = ({data}:{data:ForecastResponse|null}) => {
+    // const {coordinates}=useGeoLocation();
+    // const forecastQuery = useForecast<ForecastResponse>(coordinates);
+    const dailyForecast = data?.list.reduce((acc,forecastValue)=>{
         const date = format(new Date(forecastValue.dt*1000),'yyyy-MM-dd');
         if(!acc[date]){
             acc[date]={

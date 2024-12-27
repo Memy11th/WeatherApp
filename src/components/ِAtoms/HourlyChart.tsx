@@ -1,14 +1,14 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Card, CardContent, CardHeader, CardTitle } from '../ui/card';
-import { useGeoLocation } from '@/Hooks/useLocation';
-import { useForecast } from '@/Hooks/useWeatherData';
+// import { useGeoLocation } from '@/Hooks/useLocation';
+// import { useForecast } from '@/Hooks/useWeatherData';
 import { ForecastResponse } from '@/interfaces/ForecastResponse';
 import {format} from 'date-fns'
 import { Skeleton } from '../ui/skeleton';
-const HourlyChart = () => {
-        const {coordinates}=useGeoLocation();
-        const forecastQuery = useForecast<ForecastResponse>(coordinates);
-        const chartData = forecastQuery.data?.list.slice(0, 8).map((item)=>(
+const HourlyChart = ({data,isLoading}:{data:ForecastResponse|null,isLoading:boolean}) => {
+        // const {coordinates}=useGeoLocation();
+        // const forecastQuery = useForecast<ForecastResponse>(coordinates);
+        const chartData = data?.list.slice(0, 8).map((item)=>(
             {
                 time : format(new Date(item.dt *1000),'ha'),
                 Lowest : Math.round(item.main.temp_min),
@@ -16,7 +16,7 @@ const HourlyChart = () => {
             }
         ));
 
-        if(forecastQuery.isLoading){
+        if(isLoading){
             return (
                 <Card className=' col-span-12 border-0 md:col-span-7 bg-blue-300/35 dark:bg-slate-800/35 '>
     <CardHeader>

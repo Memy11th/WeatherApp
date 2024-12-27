@@ -6,7 +6,8 @@ import Reloader from "@/components/ِAtoms/Reloader";
 import WeatherCard from "@/components/ِAtoms/WeatherCard";
 import WeatherDetails from "@/components/ِAtoms/WeatherDetails";
 import { useGeoLocation } from "@/Hooks/useLocation";
-import { useWeatherData } from "@/Hooks/useWeatherData";
+import { useForecast, useWeatherData } from "@/Hooks/useWeatherData";
+import { ForecastResponse } from "@/interfaces/ForecastResponse";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
 
 import React from 'react';
@@ -15,6 +16,7 @@ import React from 'react';
 const Dashboard = () => {  
     const {coordinates,error,isLoading:locationLoading,getLocation}=useGeoLocation();
     const {data:weatherData,isLoading:weatherLoading} = useWeatherData<WeatherResponse>(coordinates);
+    const {data:forecastData,isLoading:forecastLoading} = useForecast<ForecastResponse>(coordinates)
 
     
 
@@ -40,9 +42,9 @@ const Dashboard = () => {
                 <Reloader isLoading={locationLoading} coordinates={coordinates} />
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard Data={weatherData??null} loadingWeather={weatherLoading} loadingLocation={locationLoading} /> 
-                    <HourlyChart />
-                    <WeatherDetails />
-                    <Forecast />
+                    <HourlyChart data={forecastData??null} isLoading={forecastLoading} />
+                    <WeatherDetails data={weatherData??null} />
+                    <Forecast data={forecastData??null} />
                 </GridContainer>
                     
 
