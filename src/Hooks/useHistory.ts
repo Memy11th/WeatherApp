@@ -27,12 +27,12 @@ export const useSearchHistory =()=>{
     
     });
 
-    const removeFromHistory = useMutation({
+    const clearHistory = useMutation({
         mutationFn : async()=>{
             setHistory([]);
             return [];
         },
         onSuccess:()=>QueryClient.setQueryData(["searchHistory"],[])
     });
-    return {history : historyQuery.data??[] , addToHistory , removeFromHistory};
+    return {history : historyQuery.data??[] , addToHistory , clearHistory};
 }

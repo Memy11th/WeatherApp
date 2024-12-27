@@ -1,13 +1,32 @@
 import React from 'react';
 import {CommandDialog,Command,CommandEmpty,CommandGroup,CommandInput,CommandItem,CommandList,CommandSeparator,CommandShortcut,} from "@/components/ui/command"
 import { Button } from '../ui/button';
-import { Search } from 'lucide-react';
+import { Clock, Search, SearchIcon } from 'lucide-react';
 import { useSearchCity } from '@/Hooks/useSearchCity';
+import { useSearchHistory } from '@/Hooks/useHistory';
+import { useNavigate } from 'react-router-dom';
+import { format } from 'date-fns';
 const SearchBar = () => {
+    const navigate = useNavigate();
+    const {history,addToHistory,clearHistory} = useSearchHistory();
     const [open , setOpen] = React.useState(false)
     const [query,setQuery] = React.useState('')
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setQuery(e.target.value)
+    }
+    const handleSelect = (cityData:string)=>{
+        const [lat,lon,name,country] = cityData.split("|");
+        addToHistory.mutate({
+            query,
+            name,
+            lat : parseFloat(lat),
+            lon : parseFloat(lon),
+            country,
+        });
+        setOpen(false);
+        navigate(`/city/${name}?lat=${lat}&lon=${lon}`);
+        setQuery('');
+
     }
     const {isLoading,data} = useSearchCity(query);
     const Results = Object.values(data??{});
@@ -28,6 +47,7 @@ const SearchBar = () => {
         // a useEffect to refresh the search results when the query changes
         React.useEffect(()=>{   
         },[query])
+        console.log(history);
 
         return (
             <>
@@ -42,8 +62,45 @@ const SearchBar = () => {
             
             <CommandList>
                 <CommandEmpty>No results found.</CommandEmpty>
+                {history.length > 0 &&<>
+                <CommandGroup heading='Recent Search'>
+                    <div className='flex justify-between text-muted-foreground text-xs items-center'>
+                        <span>
+                            <SearchIcon className='h-4 w-4' />
+                        </span>
+                        <button onClick={()=>clearHistory.mutate()} className=' underline p-1 text-xs '>
+                            Clear all
+                        </button>
+                    </div>
+                    {history.map((item)=>(
+                            <CommandItem
+                            key={item.id}
+                            value={`${item.lat}|${item.lon}|${item.name}|${item.country}`}
+                            onSelect={handleSelect}
+                            >
+                            <Clock className="mr-2 h-4 w-4 text-muted-foreground" />
+                            <span>{item.name}</span>
+                            {item.state && (
+                            <span className="text-sm text-muted-foreground">
+                                , {item.state}
+                            </span>
+                            )}
+                            <span className="text-sm text-muted-foreground">
+                            , {item.country}
+                            </span>
+                            <span className="ml-auto text-xs text-muted-foreground">
+                            {format(item.searchedAt, "MMM d, h:mm a")}
+                            </span>
+                        </CommandItem>
+                    ))}
+                    <CommandItem>
+                        {/* Recent searches here*/}
+                    </CommandItem>
+                </CommandGroup>
+                <CommandSeparator/></>}
+                
                 {query.length >= 3 ? (<CommandGroup heading="Suggestions">
-                    {Results?.map((city)=>(<CommandItem key={city.lat}  value={city.name} >
+                    {Results?.map((city)=>(<CommandItem key={city.lat}  value={`${city.lat}|${city.lon}|${city.name}|${city.country}`} onSelect={handleSelect} >
                     <span>{city.name}</span>
                     {city.state && (
                         <span className="text-sm text-muted-foreground">
