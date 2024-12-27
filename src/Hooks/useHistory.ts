@@ -1,9 +1,10 @@
 import { SearchedCity } from "@/interfaces/SearchResult"
 import { useLocalStorage } from "./useLocalStorage"
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
 export const useSearchHistory =()=>{
     const [history,setHistory] = useLocalStorage<SearchedCity[]>("searchHistory",[]);
+    const QueryClient = useQueryClient();
     const historyQuery = useQuery({
         queryKey:["searchHistory"],
         queryFn:()=>history,
@@ -21,7 +22,8 @@ export const useSearchHistory =()=>{
             const newHistory = [newSearch,...filteredHistory].slice(0,10);
             setHistory(newHistory);
             return newHistory;
-        }
+        },
+        onSuccess:(newHistory)=>QueryClient.setQueryData(["searchHistory"],newHistory)
     
     });
 
@@ -29,7 +31,8 @@ export const useSearchHistory =()=>{
         mutationFn : async()=>{
             setHistory([]);
             return [];
-        }
+        },
+        onSuccess:()=>QueryClient.setQueryData(["searchHistory"],[])
     });
     return {history : historyQuery.data??[] , addToHistory , removeFromHistory};
 }
