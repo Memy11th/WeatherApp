@@ -9,6 +9,7 @@ import { WeatherResponse } from '@/interfaces/WeatherResponse';
 import { StarIcon } from 'lucide-react';
 import { useParams, useSearchParams } from 'react-router-dom';
 import React from'react';
+import { useFavorites } from '@/Hooks/useFavorite';
 
 const City = () => {
     const [searchParams] = useSearchParams();
@@ -19,6 +20,8 @@ const City = () => {
     const {data:forecastData,isLoading:forecastLoading} = useForecast<ForecastResponse>(coordinates);
     const {data:weatherData,isLoading:weatherLoading} = useWeatherData<WeatherResponse>(coordinates);
     const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
+    const {addToFavorites,isFavorite} = useFavorites();
+    
 
     console.log(weatherData);
     console.log(forecastData);
@@ -27,7 +30,7 @@ const City = () => {
     },[lat,lon])
     return <>
     <div className="space-y-5">
-                <StarIcon className='h-4 w-4' />
+                <StarIcon className='h-4 w-4'  />
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard Data={weatherData??null} loadingWeather={weatherLoading}  /> 
                     <HourlyChart data={forecastData??null} isLoading={forecastLoading} />
