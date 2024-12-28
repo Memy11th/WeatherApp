@@ -15,9 +15,8 @@ import React from 'react';
 
 const Dashboard = () => {  
     const {coordinates,error,isLoading:locationLoading,getLocation}=useGeoLocation();
-    const {data:weatherData,isLoading:weatherLoading} = useWeatherData<WeatherResponse>(coordinates);
-    const weatherQuery = useWeatherData<WeatherResponse>(coordinates);
-    const {data:forecastData,isLoading:forecastLoading} = useForecast<ForecastResponse>(coordinates)
+    const {data:weatherData,isLoading:weatherLoading,refetch:weatherRefetch} = useWeatherData<WeatherResponse>(coordinates);
+    const {data:forecastData,isLoading:forecastLoading,refetch:forecastRefetch} = useForecast<ForecastResponse>(coordinates)
 
     
 
@@ -25,7 +24,8 @@ const Dashboard = () => {
         getLocation();
     },[]);
     React.useEffect(()=>{
-        weatherQuery.refetch();
+        weatherRefetch();
+        forecastRefetch();
     },[coordinates])
 
     

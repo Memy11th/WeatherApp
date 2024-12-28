@@ -12,7 +12,10 @@ const SearchBar = () => {
     const {history,addToHistory,clearHistory} = useSearchHistory();
     const {favorites} = useFavorites();
     const [open , setOpen] = React.useState(false)
-    const [query,setQuery] = React.useState('')
+    const [query,setQuery] = React.useState('');
+    const {isLoading,data} = useSearchCity(query);
+    const Results = Object.values(data??{});
+    console.log(Results);
     const handleSearch = (e: React.ChangeEvent<HTMLInputElement>)=>{
         setQuery(e.target.value)
     }
@@ -30,9 +33,7 @@ const SearchBar = () => {
         setQuery('');
 
     }
-    const {isLoading,data} = useSearchCity(query);
-    const Results = Object.values(data??{});
-    console.log(Results);
+   
 
     // useEffect to open the search command by clicking CTRL+S
     React.useEffect(() => {

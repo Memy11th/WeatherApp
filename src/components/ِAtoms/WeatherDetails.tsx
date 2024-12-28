@@ -1,7 +1,5 @@
-// import { useWeatherData } from "@/Hooks/useWeatherData";
 import { WeatherResponse } from "@/interfaces/WeatherResponse";
 import SingleInfo from "./SingleInfo"
-// import { useGeoLocation } from "@/Hooks/useLocation";
 import { Compass, Droplet, Gauge, MapPin, Sunrise, Sunset, Target, Thermometer } from "lucide-react";
 import { format } from "date-fns";
 import GridContainer from "./GridContainer";
