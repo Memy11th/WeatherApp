@@ -7,6 +7,7 @@ import {QueryClient,QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Dashboard from './Pages/Dashboard';
 import City from './Pages/City';
+import Favorites from './Pages/favorites';
 
 
 const queryClient = new QueryClient({
@@ -25,6 +26,7 @@ const Routes = createBrowserRouter([
   {path:'', element:<Layout/>,children:[
     {index:true,element:<Dashboard/>},
     {path:'/city/:cityName',element:<City />},
+    {path:'favorites',element:<Favorites/>},
     {path:'*',element:<Error/>}
   ]
   }
