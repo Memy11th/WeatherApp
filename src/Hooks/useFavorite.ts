@@ -55,6 +55,6 @@ export const useFavorites = ()=>{
     return {favorites:favoriteQuery.data ?? [],addToFavorites,
         removeFavorite,
         isFavorite:(lat:number,lon:number)=>{
-            favorites.some((city)=> city.lat === lat && city.lon===lon)
+        return  favorites.some((city)=> city.lat === lat && city.lon===lon)
     }}
 }
