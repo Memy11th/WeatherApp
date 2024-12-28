@@ -64,7 +64,11 @@ const SearchBar = () => {
             <CommandInput onInputCapture={handleSearch} value={query} placeholder="Search cities" />
             
             <CommandList>
-            <CommandEmpty>Type to search...</CommandEmpty>
+                {query.length === 0 && <>
+                    <CommandEmpty>Type to search...</CommandEmpty>
+                </>
+                }
+            
 
                 {!isLoading && Results.length === 0 && query.length > 2 && <>
                     <CommandEmpty>No results found.</CommandEmpty>
@@ -94,7 +98,9 @@ const SearchBar = () => {
                             </span>
                             )},
                             <span>{city.country}</span>
-                            
+                            <span className="ml-auto text-xs text-muted-foreground">
+                            {format(city.addedAt, "MMM d, h:mm a")}
+                            </span>
 
                         </CommandItem>))}
                     </CommandGroup>

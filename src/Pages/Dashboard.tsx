@@ -2,9 +2,11 @@ import Forecast from "@/components/ِAtoms/Forecast";
 import GridContainer from "@/components/ِAtoms/GridContainer";
 import HourlyChart from "@/components/ِAtoms/HourlyChart";
 import { LocationError } from "@/components/ِAtoms/LocationError";
+import MiniFavCard from "@/components/ِAtoms/MiniFavCard";
 import Reloader from "@/components/ِAtoms/Reloader";
 import WeatherCard from "@/components/ِAtoms/WeatherCard";
 import WeatherDetails from "@/components/ِAtoms/WeatherDetails";
+import { useFavorites } from "@/Hooks/useFavorite";
 import { useGeoLocation } from "@/Hooks/useLocation";
 import { useForecast, useWeatherData } from "@/Hooks/useWeatherData";
 import { ForecastResponse } from "@/interfaces/ForecastResponse";
@@ -17,7 +19,7 @@ const Dashboard = () => {
     const {coordinates,error,isLoading:locationLoading,getLocation}=useGeoLocation();
     const {data:weatherData,isLoading:weatherLoading,refetch:weatherRefetch} = useWeatherData<WeatherResponse>(coordinates);
     const {data:forecastData,isLoading:forecastLoading,refetch:forecastRefetch} = useForecast<ForecastResponse>(coordinates)
-
+    const {favorites } = useFavorites();
     
 
     React.useEffect(()=>{
@@ -27,6 +29,9 @@ const Dashboard = () => {
         weatherRefetch();
         forecastRefetch();
     },[coordinates])
+    React.useEffect(()=>{
+        
+    },[favorites])
 
     
     if(error && !locationLoading ){
@@ -43,6 +48,9 @@ const Dashboard = () => {
     
     return (
         <div className="space-y-5">
+            <GridContainer cols={12} className='gap-6 p-2 '>
+            {favorites.slice(0,4).map((city)=> <MiniFavCard City={city} key={city.id} />)}
+            </GridContainer>
                 <Reloader isLoading={locationLoading} coordinates={coordinates} />
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard Data={weatherData??null} loadingWeather={weatherLoading} loadingLocation={locationLoading} /> 
