@@ -8,7 +8,7 @@ const MiniFavCard = ({City}:{City:FavoriteCity}) => {
         const {removeFavorite} = useFavorites();
         
     return  <>
-        <div className=" col-span-3  relative p-4 rounded-xl text-muted-foreground bg-slate-200 dark:bg-slate-800/35  flex justify-center gap-4 items-center">
+        <div className=" col-span-3  relative p-4 rounded-xl text-muted-foreground bg-slate-200 dark:bg-slate-800/35  flex justify-around gap-4 items-center">
             <XCircle onClick={()=>removeFavorite.mutate(`${City.lat}-${City.lon}`)} className="absolute top-1 right-1 w-4 h-4 cursor-pointer" />
             <div className="flex flex-col justify-center items-center">
                 <div className="flex justify-center items-center">
