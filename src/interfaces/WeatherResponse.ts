@@ -1,5 +1,8 @@
+import { Coordinates } from "./coordinates";
+
     export interface WeatherResponse {
         base: string;
+        name: string;
         clouds: {
         all: number;
         };
@@ -20,7 +23,6 @@
         temp_max: number;
         temp_min: number;
         };
-        name: string;
         sys: {
         country: string;
         id: number;
@@ -41,4 +43,35 @@
         gust: number;
         speed: number;
         };
+    }
+
+    export interface WeatherCondition {
+        id: number;
+        main: string;
+        description: string;
+        icon: string;
+      }
+
+    export interface WeatherData { 
+        coord: Coordinates;
+    weather: WeatherCondition[];
+     main: {
+    temp: number;
+    feels_like: number;
+    temp_min: number;
+    temp_max: number;
+    pressure: number;
+    humidity: number;
+  };
+  wind: {
+    speed: number;
+    deg: number;
+  };
+  sys: {
+    sunrise: number;
+    sunset: number;
+    country: string;
+  };
+  name: string;
+  dt: number;
     }

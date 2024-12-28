@@ -6,19 +6,20 @@ import WeatherDetails from '@/components/ِAtoms/WeatherDetails';
 import { useForecast, useWeatherData } from '@/Hooks/useWeatherData';
 import { ForecastResponse } from '@/interfaces/ForecastResponse';
 import { WeatherResponse } from '@/interfaces/WeatherResponse';
-import { StarIcon } from 'lucide-react';
-import {  useSearchParams } from 'react-router-dom';
-
+import {  useParams, useSearchParams } from 'react-router-dom';
 import React from'react';
+import FavoriteButton from '@/components/ِAtoms/FavoriteButton';
 
 const City = () => {
     const [searchParams] = useSearchParams();
-    // const params = useParams(); 
+    const params = useParams(); 
     const lat = parseFloat(searchParams.get('lat') || '0');
     const lon = parseFloat(searchParams.get('lon') || '0');
     const coordinates = { lat, lon };
     const {data:forecastData,isLoading:forecastLoading,refetch:forecastRefetch} = useForecast<ForecastResponse>(coordinates);
     const {data:weatherData,isLoading:weatherLoading,refetch:weatherRefetch} = useWeatherData<WeatherResponse>(coordinates);
+
+
     React.useEffect(()=>{
         forecastRefetch();
         weatherRefetch();
@@ -26,7 +27,7 @@ const City = () => {
         },[lat,lon])
     return <>
     <div className="space-y-5">
-                <StarIcon className='h-6 w-6 cursor-pointer fill-yellow-400 text-black  '  />
+                <FavoriteButton data={{...weatherData , name: params.cityName }} />
                 <GridContainer cols={12} className='gap-6 p-2 mt-4 '>
                     <WeatherCard Data={weatherData??null} loadingWeather={weatherLoading}  /> 
                     <HourlyChart data={forecastData??null} isLoading={forecastLoading} />
